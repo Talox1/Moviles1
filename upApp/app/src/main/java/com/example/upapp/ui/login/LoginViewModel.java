@@ -92,6 +92,6 @@ public class LoginViewModel extends ViewModel {
         return lastName != null && lastName.trim().length() > 5;
     }
     private boolean isPhoneValid(String phone) {
-        return phone != null && phone.trim().length() > 9;
+        return phone != null && phone.trim().length() == 9;
     }
 }

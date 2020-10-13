@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "310010994421",
+    "firebase_url": "https://android-backend-39f5c.firebaseio.com",
+    "project_id": "android-backend-39f5c",
+    "storage_bucket": "android-backend-39f5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310010994421:android:72dff3330d460b72332fbc",
+        "android_client_info": {
+          "package_name": "com.example.upapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310010994421-9hg85atqugbhn2kl4p4ri78f0n63l4qj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEsmZFdQEw6hdA9hs5RyH3yusHffDBXuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310010994421-9hg85atqugbhn2kl4p4ri78f0n63l4qj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
