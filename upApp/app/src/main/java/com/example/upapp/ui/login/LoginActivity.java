@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -45,11 +46,16 @@ import com.google.firebase.auth.FirebaseAuthMultiFactorException;
 
 import com.google.firebase.auth.MultiFactorResolver;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         //agregando parametros de la peticion
         final RequestQueue queue = Volley.newRequestQueue(this);
         final String url = "http://www.google.com";
+
+
         //agregando parametros de la peticion END
 
         // Initialize Firebase Auth
@@ -69,7 +77,14 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
+        final Button validarButton = findViewById(R.id.btn_validar);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        //final String user = usernameEditText.getText().toString();
+        //final String password = passwordEditText.getText().toString();
+
+
+
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -142,9 +157,10 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*loadingProgressBar.setVisibility(View.VISIBLE);
+                loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());*/
+                        passwordEditText.getText().toString());
+
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -158,12 +174,56 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
-                //queue.add(stringRequest);
+                queue.add(stringRequest);
 
-                singIn(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                //singIn(usernameEditText.getText().toString(), passwordEditText.getText().toString());
 
             }
         });
+
+        validarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String URL = "http://192.168.1.74/volley_backend/validar_usuario.php";
+
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+ 
+                        if (!response.isEmpty()) {
+                            Intent profileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
+                            startActivity(profileActivity);
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> parametros = new HashMap<String, String>();
+                        parametros.put("usuario", usernameEditText.getText().toString());
+                        parametros.put("password", passwordEditText.getText().toString());
+                        return parametros;
+                    }
+                };
+                //RequestQueue requestQueue = Volley.newRequestQueue(this);
+                queue.add(stringRequest);
+            }
+        });
+
+
+    }
+
+    public void ValidarUsuario(String URL, final String user, final String password){
+
     }
 
     @Override
