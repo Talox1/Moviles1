@@ -5,6 +5,7 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="action_register_short">Register</string>
     <string name="action_validar_usuario">Validar Usuario</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -15,7 +16,9 @@
 
     <string name="login_failed">"Login failed"</string>
 
+
     <string name="user_name">User name</string>
+    <string name="name">Name</string>
     <string name="lastname_user">Last Name</string>
     <string name="user_phone">Phone</string>
     <string name="user_email">Email</string>

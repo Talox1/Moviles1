@@ -34,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upapp.R;
+import com.example.upapp.RegisterActivity;
 import com.example.upapp.ui.login.LoginViewModel;
 import com.example.upapp.ui.login.LoginViewModelFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final Button validarButton = findViewById(R.id.btn_validar);
+        final TextView txtRegister = findViewById(R.id.txt_register);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         //final String user = usernameEditText.getText().toString();
         //final String password = passwordEditText.getText().toString();
@@ -219,12 +221,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        txtRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerActivity = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(registerActivity);
+            }
+        });
+
 
     }
 
-    public void ValidarUsuario(String URL, final String user, final String password){
-
-    }
 
     @Override
     protected void onStart() {
