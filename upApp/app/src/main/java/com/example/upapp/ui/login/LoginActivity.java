@@ -39,9 +39,6 @@ import com.example.upapp.ui.login.LoginViewModel;
 import com.example.upapp.ui.login.LoginViewModelFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.AuthResult;
 
 import com.google.firebase.auth.FirebaseAuthMultiFactorException;
 
@@ -53,7 +50,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private FirebaseAuth mAuth;
+
     private static final String TAG = "EmailPassword";
 
 
@@ -69,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         //agregando parametros de la peticion END
 
         // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+
 
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
@@ -187,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String URL = "http://192.168.1.74/volley_backend/validar_usuario.php";
+                String URL = "http://192.168.1.66/volley_backend/validar_usuario.php";
 
 
 
@@ -237,8 +234,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI (currentUser);
+
 
 
     }
@@ -274,57 +270,4 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
-
-    private void updateUI(FirebaseUser user) {
-
-    }
-
-    private void singIn(String email, String password){
-        Toast.makeText(getApplicationContext(), "login", Toast.LENGTH_LONG).show();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d (TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            getUserProfile();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                            // ...
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-    public void getUserProfile() {
-        // [START get_user_profile]
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-            Toast.makeText(LoginActivity.this, "Sucessfull email user ="+email,
-                    Toast.LENGTH_SHORT).show();
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            String uid = user.getUid();
-        }
-        // [END get_user_profile]
-    }
-
-
 }

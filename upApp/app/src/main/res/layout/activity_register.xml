@@ -6,20 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/txt_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/prompt_password"
-        android:inputType="textPersonName"
-        android:text="@string/prompt_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
 
     <EditText
         android:id="@+id/txt_name"
@@ -29,7 +16,7 @@
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
-        android:text="@string/name"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +30,7 @@
         android:ems="10"
         android:hint="@string/lastname_user"
         android:inputType="textPersonName"
-        android:text="@string/lastname_user"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_name" />
@@ -57,11 +44,26 @@
         android:ems="10"
         android:hint="@string/user_email"
         android:inputType="textEmailAddress"
-        android:text="@string/user_email"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_apellido" />
+
+    <EditText
+        android:id="@+id/txt_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
     <Button
         android:id="@+id/btn_register"
