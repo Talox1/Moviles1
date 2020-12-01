@@ -35,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upapp.R;
 import com.example.upapp.RegisterActivity;
+import com.example.upapp.ViewUserActivity;
 import com.example.upapp.ui.login.LoginViewModel;
 import com.example.upapp.ui.login.LoginViewModelFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -193,8 +194,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(String response) {
  
                         if (!response.isEmpty()) {
-                            Intent profileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
-                            startActivity(profileActivity);
+                            Intent listUsers = new Intent(getApplicationContext(), ViewUserActivity.class);
+                            startActivity(listUsers);
                         }else{
                             Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
                         }

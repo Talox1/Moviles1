@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.example.upapp"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -36,6 +36,7 @@ dependencies {
 
     //implementacion de servicios
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.android.material:material:1.0.0'
 
     //firebase
     implementation platform('com.google.firebase:firebase-bom:25.12.0')

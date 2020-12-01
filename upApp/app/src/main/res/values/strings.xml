@@ -25,4 +25,8 @@
     <string name="button_back">Back</string>
 
     <string name="profile_title">Vista profile</string>
+    <string name="user_list">Lista de usuarios:</string>
+    <string name="list_name_user">Nombre</string>
+    <string name="list_name_age">edad</string>
+    <string name="list_btn_actions">Option</string>
 </resources>

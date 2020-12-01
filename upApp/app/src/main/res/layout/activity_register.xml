@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/txt_name"
+        android:id="@+id/txt__list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -33,7 +33,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+        app:layout_constraintTop_toBottomOf="@+id/txt__list_name" />
 
     <EditText
         android:id="@+id/txt_email"

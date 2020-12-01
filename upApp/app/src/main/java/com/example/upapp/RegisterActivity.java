@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -19,9 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upapp.ui.login.ProfileActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         final RequestQueue queue = Volley.newRequestQueue(this);
 
-        final EditText name = findViewById(R.id.txt_name);
+        final EditText name = findViewById(R.id.txt__list_name);
         final EditText last_name = findViewById(R.id.txt_apellido);
         final EditText email = findViewById(R.id.txt_email);
         final EditText password = findViewById(R.id.txt_password);
@@ -46,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
            @Override
            public void onClick(View view) {
 
-               String URL = "http://192.168.1.66/volley_backend/registrar_usuario.php";
+               String URL = "http://192.168.1.66/volley_backend/insert.php";
 
 
 
@@ -55,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
                    public void onResponse(String response) {
 
                        if (!response.isEmpty()) {
-                           Intent profileActivity = new Intent(getApplicationContext(), ProfileActivity.class);
-                           startActivity(profileActivity);
+                           Intent viewUserActivity = new Intent(getApplicationContext(), ViewUserActivity.class);
+                           startActivity(viewUserActivity);
                        }else{
                            Toast.makeText(getApplicationContext(), "Ocurrio un error", Toast.LENGTH_LONG).show();
                        }
@@ -76,10 +71,10 @@ public class RegisterActivity extends AppCompatActivity {
                        final String usu_password = password.getText().toString();
 
                        Map<String, String> parametros = new HashMap<String, String>();
-                       parametros.put("usuario",usu_email );
-                       parametros.put("password", usu_password);
-                       parametros.put("nombres", usu_nombre);
-                       parametros.put("apellidos", usu_apellidos);
+                       parametros.put("email",usu_email );
+                       parametros.put("contraseña", usu_password);
+                       parametros.put("nombre", usu_nombre);
+                       parametros.put("apellido", usu_apellidos);
                        return parametros;
                    }
                };

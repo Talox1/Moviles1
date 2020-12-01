@@ -12,7 +12,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.upapp.R;
 public class SegundoActivity extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class SegundoActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText nombre =  findViewById(R.id.txt_name);
+        final EditText nombre =  findViewById(R.id.txt__list_name);
         final EditText apellido =  findViewById(R.id.txt_lastname);
         final EditText telefono = findViewById(R.id.txt_phone);
         final EditText email =  findViewById(R.id.txt_email);
