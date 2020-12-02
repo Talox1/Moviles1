@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -96,7 +97,7 @@ public class ViewUserActivity extends AppCompatActivity {
 
     private void deleteData(final String id) {
 
-        StringRequest request = new StringRequest(Request.Method.POST, "https://arsltechmysql.000webhostapp.com/delete.php",
+        StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.1.66/volley_backend/delete.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -147,10 +148,12 @@ public class ViewUserActivity extends AppCompatActivity {
 
 
                     if(success.equals("1")){
-                        Toast.makeText(getApplicationContext(), jsonArray.toString(), Toast.LENGTH_LONG).show();
+
+                        Log.e("Json",jsonArray.toString());
+                        Log.e("Json length",""+jsonArray.length());
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject object = jsonArray.getJSONObject(i);
-
+                            Log.e("Json object",""+object);
                             String id = object.getString("id");
                             String nombre = object.getString("nombre");
                             String apellido = object.getString("apellido");

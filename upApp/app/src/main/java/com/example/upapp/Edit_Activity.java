@@ -3,6 +3,7 @@ package com.example.upapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 public class Edit_Activity extends AppCompatActivity {
 
-    EditText edId,edName,edContact,edEmail,edAddress;
+    EditText edId,edName,edApellido,edEmail,edContraseña;
     private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +32,19 @@ public class Edit_Activity extends AppCompatActivity {
 
         edId = findViewById(R.id.ed_id);
         edName = findViewById(R.id.ed_name);
-        edContact = findViewById(R.id.ed_contact);
+        edApellido = findViewById(R.id.ed_apellido);
         edEmail = findViewById(R.id.ed_email);
-        edAddress = findViewById(R.id.ed_address);
+        edContraseña = findViewById(R.id.ed_password);
 
         Intent intent = getIntent();
         position = intent.getExtras().getInt("position");
 
 
-        edId.setText("ID: "+ViewUserActivity.userArrayList.get(position).getId());
-        edName.setText("Name: "+ViewUserActivity.userArrayList.get(position).getNombre());
-        edContact.setText("Email: "+ViewUserActivity.userArrayList.get(position).getEmail());
-        edEmail.setText("Apellido: "+ViewUserActivity.userArrayList.get(position).getApellido());
-        edAddress.setText("password: "+ViewUserActivity.userArrayList.get(position).getPassword());
+        edId.setText(ViewUserActivity.userArrayList.get(position).getId());
+        edName.setText(ViewUserActivity.userArrayList.get(position).getNombre());
+        edApellido.setText(ViewUserActivity.userArrayList.get(position).getEmail());
+        edEmail.setText(ViewUserActivity.userArrayList.get(position).getApellido());
+        edContraseña.setText(ViewUserActivity.userArrayList.get(position).getPassword());
 
 
 
@@ -54,8 +55,8 @@ public class Edit_Activity extends AppCompatActivity {
 
         final String name = edName.getText().toString();
         final String email = edEmail.getText().toString();
-        final String contact = edContact.getText().toString();
-        final String address = edAddress.getText().toString();
+        final String apellido = edApellido.getText().toString();
+        final String contraseña = edContraseña.getText().toString();
         final String id = edId.getText().toString();
 
 
@@ -66,7 +67,7 @@ public class Edit_Activity extends AppCompatActivity {
         progressDialog.setMessage("Updating....");
         progressDialog.show();
 
-        StringRequest request = new StringRequest(Request.Method.POST, "https://arsltechmysql.000webhostapp.com/update.php",
+        StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.1.66/volley_backend/update.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -92,11 +93,11 @@ public class Edit_Activity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("id",id);
-                params.put("name",name);
+                params.put("nombre",name);
+                params.put("apellido",apellido);
                 params.put("email",email);
-                params.put("contact",contact);
-                params.put("address",address);
-
+                params.put("contraseña",contraseña);
+                Log.e("param",params.toString());
                 return params;
             }
         };
